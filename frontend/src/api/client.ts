@@ -1,6 +1,7 @@
 // ========== API 客户端 ==========
 
-const API_BASE = "http://localhost:8000/api";
+// 开发模式通过 Vite proxy 转发，生产模式使用相对路径（由 Nginx 反向代理处理）
+const API_BASE = import.meta.env.VITE_API_BASE ?? "/api";
 
 let _token: string | null = localStorage.getItem("auth_token");
 

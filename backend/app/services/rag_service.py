@@ -14,7 +14,6 @@ import numpy as np
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from app.config import settings
-from app.utils.api_client import MODEL_NAME, _get_client
 
 
 class RAGService:
