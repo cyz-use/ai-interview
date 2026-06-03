@@ -18,7 +18,14 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    if (!username || !password || (mode === "register" && !email)) return;
+    if (!username || !password || (mode === "register" && !email)) {
+      setError("请填写所有字段");
+      return;
+    }
+    if (password.length < 6) {
+      setError("密码至少 6 位");
+      return;
+    }
     setLoading(true); setError("");
     try {
       const r = mode === "register"
@@ -26,8 +33,9 @@ function LoginPage() {
         : await api.login(username, password);
       api.setToken(r.access_token);
       window.location.reload();
-    } catch (e: any) { setError(e.message); }
-    finally { setLoading(false); }
+    } catch (e: any) {
+      setError(e.message || "网络错误，请检查后端是否启动");
+    } finally { setLoading(false); }
   };
 
   const inputStyle = {
