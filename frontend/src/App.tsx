@@ -10,7 +10,7 @@ import Report from "./pages/Report";
 // ===================== 登录页 =====================
 
 function LoginPage() {
-  const [mode, setMode] = useState<"login" | "register">("login");
+  const [mode, setMode] = useState<"login" | "register">("register");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,8 +44,8 @@ function LoginPage() {
           <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, background: "var(--accent-glow)", borderRadius: "var(--radius)", marginBottom: 16 }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>AI 模拟面试</h1>
-          <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: 4 }}>{mode === "login" ? "欢迎回来" : "创建账号开始体验"}</p>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>{mode === "login" ? "欢迎登录" : "注册新账号"}</h1>
+          <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: 4 }}>{mode === "login" ? "登录后继续面试" : "免费试用 3 次，无需付费"}</p>
         </div>
 
         {/* 卡片 */}
@@ -65,7 +65,7 @@ function LoginPage() {
 
           <p style={{ marginTop: 20, textAlign: "center", fontSize: "0.82rem", color: "var(--text-muted)" }}>
             {mode === "login" ? "还没有账号？" : "已有账号？"}
-            <button onClick={() => setMode(mode === "login" ? "register" : "login")} style={{ marginLeft: 4, color: "var(--accent)", background: "none", border: "none", fontWeight: 500, cursor: "pointer", fontSize: "0.82rem" }}>{mode === "login" ? "注册" : "登录"}</button>
+            <span onClick={() => setMode(mode === "login" ? "register" : "login")} style={{ marginLeft: 4, color: "var(--accent)", fontWeight: 600, cursor: "pointer", fontSize: "0.85rem" }}>{mode === "login" ? "立即注册 →" : "去登录 →"}</span>
           </p>
         </div>
       </div>
