@@ -1,6 +1,6 @@
 // ========== API 客户端 ==========
 
-const API_BASE = "https://ai-interview-ix84.vercel.app/api";
+const API_BASE = "/api";
 
 let _token: string | null = localStorage.getItem("auth_token");
 
