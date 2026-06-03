@@ -26,16 +26,14 @@ class RAGService:
         self._embedding_model = None
 
     def _get_embedding_model(self):
-        """延迟加载嵌入模型。"""
+        """延迟加载嵌入模型。Vercel 环境降级为简单嵌入。"""
         if self._embedding_model is None:
             try:
                 from sentence_transformers import SentenceTransformer
                 self._embedding_model = SentenceTransformer(
                     "all-MiniLM-L6-v2"
                 )
-                print("[INFO] 已加载本地 Embedding 模型: all-MiniLM-L6-v2")
             except ImportError:
-                print("[WARN] sentence-transformers 未安装，使用 LLM 代理嵌入")
                 self._embedding_model = "llm"
         return self._embedding_model
 

@@ -5,23 +5,30 @@
 - 24 个岗位类别
 - 每条包含纯文本简历 (Resume_str)
 - 首次运行会自动下载（约 62MB），后续使用缓存
+
+注意：kagglehub 和 pandas 是可选依赖，Vercel 环境下不可用。
 """
 
 import random
 
-import kagglehub
-import pandas as pd
-
-# ——— 加载 & 缓存 ———
-
-_df_cache: pd.DataFrame | None = None
+# 延迟导入重型依赖
+_df_cache = None
 
 
-def _load_df() -> pd.DataFrame:
-    """加载 Kaggle 简历数据集（带缓存）。"""
+def _load_df():
+    """加载 Kaggle 简历数据集（带缓存）。仅在调用时才导入重型依赖。"""
     global _df_cache
     if _df_cache is not None:
         return _df_cache
+
+    try:
+        import kagglehub
+        import pandas as pd
+    except ImportError:
+        raise RuntimeError(
+            "Kaggle 数据集不可用（缺少 kagglehub/pandas）。"
+            "请安装：pip install kagglehub pandas"
+        )
 
     path = kagglehub.dataset_download("snehaanbhawal/resume-dataset")
     csv_path = f"{path}/Resume/Resume.csv"
