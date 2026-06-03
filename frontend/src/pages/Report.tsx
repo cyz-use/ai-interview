@@ -70,7 +70,7 @@ export default function Report() {
         fontSize: "0.78rem",
         fontWeight: 500,
       } as React.CSSProperties),
-    listItem: (color: string) =>
+    listItem: (_color: string) =>
       ({
         display: "flex",
         gap: "10px",

@@ -63,7 +63,7 @@ function PaymentModal({ onClose }: { onClose: () => void }) {
             <span style={{ position: "absolute", top: "-10px", right: "12px", background: "var(--accent)", color: "white", padding: "2px 8px", borderRadius: "10px", fontSize: "0.7rem" }}>推荐</span>
             <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginBottom: "4px" }}>年度</p>
             <p style={{ fontSize: "1.8rem", fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>
-              ¥{info?.yearly || 199}
+              ¥{info?.price_yearly || 199}
             </p>
             <p style={{ fontSize: "0.72rem", color: "var(--text-muted)", margin: 0 }}>/年</p>
           </div>
